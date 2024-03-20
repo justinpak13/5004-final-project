@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class TicTacToeModel implements TicTacToe {
   final int NUMBER_OF_SQUARES = 9;
-  private Player[][] board;
+  private final Player[][] board;
   private Player currentTurn;
   private Player winner;
 
@@ -28,7 +28,36 @@ public class TicTacToeModel implements TicTacToe {
    * @throws IllegalStateException if the game is over
    */
   //TODO NEED TO IMPLEMENT
-  public void move(int r, int c){
+  public void move(int r, int c) throws IllegalArgumentException, IllegalStateException{
+    if (r > 2 || r < 0 || c > 2 || c < 0){
+      throw new IllegalArgumentException("Out of bounds");
+    }
+
+    if (this.board[r][c] != null){
+      throw new IllegalArgumentException("Already Occupied");
+    }
+
+    if (this.isGameOver()){
+      throw new IllegalStateException("Game is over");
+    }
+
+    // place the space
+    this.board[r][c] = this.currentTurn;
+    this.numberOfSpacesAvailable -= 1;
+
+    // check for winner and set if needed
+    if (this.isGameOver()){
+      if (this.getWinner() != null){
+        this.winner = this.getWinner();
+      }
+    }
+
+    if (this.currentTurn.equals(Player.X)){
+      this.currentTurn = Player.O;
+    } else {
+      this.currentTurn = Player.X;
+
+    }
   }
 
   /**
@@ -36,9 +65,8 @@ public class TicTacToeModel implements TicTacToe {
    *
    * @return the {@link Player} whose turn it is
    */
-  //TODO NEED TO IMPLEMENT
   public Player getTurn(){
-
+    return this.currentTurn;
   }
 
   /**
@@ -47,8 +75,14 @@ public class TicTacToeModel implements TicTacToe {
    *
    * @return true if the game is over, false otherwise
    */
-  //TODO NEED TO IMPLEMENT
   public boolean isGameOver(){
+    if (this.getWinner() == Player.O || this.getWinner() == Player.X){
+      return true;
+    }
+    if (numberOfSpacesAvailable == 0){
+      return true;
+    }
+    return false;
 
   }
 
@@ -58,9 +92,40 @@ public class TicTacToeModel implements TicTacToe {
    *
    * @return the winner, or null if there is no winner
    */
-  //TODO NEED TO IMPLEMENT
   public Player getWinner(){
+    // check rows
+    for (int i = 0; i < 3; i++) {
+      if (this.board[i][0] != null && this.board[i][1] != null && this.board[i][2] != null
+              && this.board[i][0].equals(this.board[i][1])
+              && this.board[i][1].equals(this.board[i][2])) {
+        return this.board[i][0];
+      }
+    }
 
+      // check columns
+      for (int i = 0; i < 3; i++){
+        if (this.board[0][i] != null && this.board[1][i] != null && this.board[2][i] != null
+                && this.board[0][i].equals(this.board[1][i])
+                && this.board[1][i].equals(this.board[2][i])){
+          return this.board[0][i];
+        }
+    }
+    // check diagonals
+      // top left to bottom right
+      if (this.board[0][0] != null && this.board[1][1] != null && this.board[2][2] != null
+              && this.board[1][1].equals(this.board[0][0])
+              && this.board[2][2].equals(this.board[1][1])){
+        return this.board[0][0];
+      }
+
+      // top right to bottom left
+      if (this.board[0][2] != null && this.board[1][1] != null && this.board[2][0] != null
+              && this.board[1][1].equals(this.board[0][2])
+              && this.board[0][2].equals(this.board[2][0])){
+        return this.board[0][2];
+      }
+
+    return null;
   }
 
   /**
@@ -69,9 +134,8 @@ public class TicTacToeModel implements TicTacToe {
    *
    * @return the current game board
    */
-  //TODO NEED TO IMPLEMENT
   public Player[][] getBoard(){
-
+    return this.board;
   }
 
   /**
@@ -81,9 +145,18 @@ public class TicTacToeModel implements TicTacToe {
    * @param r the row
    * @param c the column
    * @return the player at the given position, or null if it's empty
+   * @throws IllegalArgumentException if the row and column is invalid
    */
-  //TODO NEED TO IMPLEMENT
-  public Player getMarkAt(int r, int c){
+  public Player getMarkAt(int r, int c) throws IllegalArgumentException{
+    if (r > 2 || r < 0 || c > 2 || c < 0){
+      throw new IllegalArgumentException();
+    }
+
+    if (this.board[r][c] == null){
+      return null;
+    } else {
+      return this.board[r][c];
+    }
 
   }
 
