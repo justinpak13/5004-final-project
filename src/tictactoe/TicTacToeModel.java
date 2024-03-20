@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 
 public class TicTacToeModel implements TicTacToe {
   final int NUMBER_OF_SQUARES = 9;
-  Player[][] board;
-  Player currentTurn;
-  Player winner;
+  private Player[][] board;
+  private Player currentTurn;
+  private Player winner;
 
-  int numberOfSpacesAvailable;
+  private int numberOfSpacesAvailable;
   // add your implementation here
 
   public TicTacToeModel(){
