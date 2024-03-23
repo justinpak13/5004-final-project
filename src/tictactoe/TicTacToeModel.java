@@ -3,8 +3,11 @@ package tictactoe;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation class of TicTacToe.
+ */
 public class TicTacToeModel implements TicTacToe {
-  final int NUMBER_OF_SQUARES = 9;
+  final int numberOfSquares = 9;
   private final Player[][] board;
   private Player currentTurn;
   private Player winner;
@@ -12,11 +15,14 @@ public class TicTacToeModel implements TicTacToe {
   private int numberOfSpacesAvailable;
   // add your implementation here
 
-  public TicTacToeModel(){
+  /**
+   * Constructor for the TicTacToeModel Class.
+   */
+  public TicTacToeModel() {
     this.board = new Player[3][3];
     this.currentTurn = Player.X;
     this.winner = null;
-    this.numberOfSpacesAvailable = NUMBER_OF_SQUARES;
+    this.numberOfSpacesAvailable =  numberOfSquares;
   }
 
   /**
@@ -28,16 +34,16 @@ public class TicTacToeModel implements TicTacToe {
    * @throws IllegalStateException if the game is over
    */
   //TODO NEED TO IMPLEMENT
-  public void move(int r, int c) throws IllegalArgumentException, IllegalStateException{
-    if (r > 2 || r < 0 || c > 2 || c < 0){
+  public void move(int r, int c) throws IllegalArgumentException, IllegalStateException {
+    if (r > 2 || r < 0 || c > 2 || c < 0) {
       throw new IllegalArgumentException("Out of bounds");
     }
 
-    if (this.board[r][c] != null){
+    if (this.board[r][c] != null) {
       throw new IllegalArgumentException("Already Occupied");
     }
 
-    if (this.isGameOver()){
+    if (this.isGameOver()) {
       throw new IllegalStateException("Game is over");
     }
 
@@ -46,17 +52,16 @@ public class TicTacToeModel implements TicTacToe {
     this.numberOfSpacesAvailable -= 1;
 
     // check for winner and set if needed
-    if (this.isGameOver()){
-      if (this.getWinner() != null){
+    if (this.isGameOver()) {
+      if (this.getWinner() != null) {
         this.winner = this.getWinner();
       }
     }
 
-    if (this.currentTurn.equals(Player.X)){
+    if (this.currentTurn.equals(Player.X)) {
       this.currentTurn = Player.O;
     } else {
       this.currentTurn = Player.X;
-
     }
   }
 
@@ -65,7 +70,7 @@ public class TicTacToeModel implements TicTacToe {
    *
    * @return the {@link Player} whose turn it is
    */
-  public Player getTurn(){
+  public Player getTurn() {
     return this.currentTurn;
   }
 
@@ -75,11 +80,12 @@ public class TicTacToeModel implements TicTacToe {
    *
    * @return true if the game is over, false otherwise
    */
-  public boolean isGameOver(){
-    if (this.getWinner() == Player.O || this.getWinner() == Player.X){
+  public boolean isGameOver() {
+    if (this.getWinner() == Player.O || this.getWinner() == Player.X) {
+      this.winner = this.getWinner();
       return true;
     }
-    if (numberOfSpacesAvailable == 0){
+    if (numberOfSpacesAvailable == 0) {
       return true;
     }
     return false;
@@ -92,7 +98,7 @@ public class TicTacToeModel implements TicTacToe {
    *
    * @return the winner, or null if there is no winner
    */
-  public Player getWinner(){
+  public Player getWinner() {
     // check rows
     for (int i = 0; i < 3; i++) {
       if (this.board[i][0] != null && this.board[i][1] != null && this.board[i][2] != null
@@ -102,28 +108,29 @@ public class TicTacToeModel implements TicTacToe {
       }
     }
 
-      // check columns
-      for (int i = 0; i < 3; i++){
-        if (this.board[0][i] != null && this.board[1][i] != null && this.board[2][i] != null
-                && this.board[0][i].equals(this.board[1][i])
-                && this.board[1][i].equals(this.board[2][i])){
-          return this.board[0][i];
-        }
+    // check columns
+    for (int i = 0; i < 3; i++) {
+      if (this.board[0][i] != null && this.board[1][i] != null && this.board[2][i] != null
+              && this.board[0][i].equals(this.board[1][i])
+              && this.board[1][i].equals(this.board[2][i])) {
+        return this.board[0][i];
+      }
     }
-    // check diagonals
-      // top left to bottom right
-      if (this.board[0][0] != null && this.board[1][1] != null && this.board[2][2] != null
-              && this.board[1][1].equals(this.board[0][0])
-              && this.board[2][2].equals(this.board[1][1])){
-        return this.board[0][0];
-      }
 
-      // top right to bottom left
-      if (this.board[0][2] != null && this.board[1][1] != null && this.board[2][0] != null
-              && this.board[1][1].equals(this.board[0][2])
-              && this.board[0][2].equals(this.board[2][0])){
-        return this.board[0][2];
-      }
+    // check diagonals
+    // top left to bottom right
+    if (this.board[0][0] != null && this.board[1][1] != null && this.board[2][2] != null
+            && this.board[1][1].equals(this.board[0][0])
+            && this.board[2][2].equals(this.board[1][1])) {
+      return this.board[0][0];
+    }
+
+    // top right to bottom left
+    if (this.board[0][2] != null && this.board[1][1] != null && this.board[2][0] != null
+            && this.board[1][1].equals(this.board[0][2])
+            && this.board[0][2].equals(this.board[2][0])) {
+      return this.board[0][2];
+    }
 
     return null;
   }
@@ -134,8 +141,15 @@ public class TicTacToeModel implements TicTacToe {
    *
    * @return the current game board
    */
-  public Player[][] getBoard(){
-    return this.board;
+  public Player[][] getBoard() {
+    Player[][] result = new Player[3][3];
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        result[i][j] = this.board[i][j];
+      }
+    }
+
+    return result;
   }
 
   /**
@@ -147,12 +161,12 @@ public class TicTacToeModel implements TicTacToe {
    * @return the player at the given position, or null if it's empty
    * @throws IllegalArgumentException if the row and column is invalid
    */
-  public Player getMarkAt(int r, int c) throws IllegalArgumentException{
-    if (r > 2 || r < 0 || c > 2 || c < 0){
+  public Player getMarkAt(int r, int c) throws IllegalArgumentException {
+    if (r > 2 || r < 0 || c > 2 || c < 0) {
       throw new IllegalArgumentException();
     }
 
-    if (this.board[r][c] == null){
+    if (this.board[r][c] == null) {
       return null;
     } else {
       return this.board[r][c];
@@ -170,20 +184,5 @@ public class TicTacToeModel implements TicTacToe {
           .collect(Collectors.joining("\n-----------\n"));
     // This is the equivalent code as above, but using iteration, and still using 
     // the helpful built-in String.join method.
-    /**********
-    List<String> rows = new ArrayList<>();
-    for(Player[] row : getBoard()) {
-      List<String> rowStrings = new ArrayList<>();
-      for(Player p : row) {
-        if(p == null) {
-          rowStrings.add(" ");
-        } else {
-          rowStrings.add(p.toString());
-        }
-      }
-      rows.add(" " + String.join(" | ", rowStrings));
-    }
-    return String.join("\n-----------\n", rows);
-    ************/
   }
 }

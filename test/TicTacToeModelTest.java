@@ -1,14 +1,13 @@
-import org.junit.Test;
-
-import tictactoe.Player;
-import tictactoe.TicTacToe;
-import tictactoe.TicTacToeModel;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import org.junit.Test;
+import tictactoe.Player;
+import tictactoe.TicTacToe;
+import tictactoe.TicTacToeModel;
 
 /**
  * Test cases for the tic tac toe model. Verifying that game state is properly managed, and
@@ -108,7 +107,7 @@ public class TicTacToeModelTest {
     ttt1.move(2, 0);
     assertTrue(ttt1.isGameOver());
     assertNull(ttt1.getWinner());
-    assertEquals( " X | O | X\n"
+    assertEquals(" X | O | X\n"
             + "-----------\n"
             + " O | O | X\n"
             + "-----------\n"
