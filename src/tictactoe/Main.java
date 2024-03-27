@@ -11,6 +11,6 @@ public class Main {
    */
   public static void main(String[] args) {
     new TicTacToeConsoleController(new InputStreamReader(System.in),
-        System.out).playGame(new TicTacToeModel());
+            System.out).playGame(new TicTacToeModel());
   }
 }
