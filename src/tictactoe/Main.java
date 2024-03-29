@@ -2,7 +2,7 @@ package tictactoe;
 
 import java.io.InputStreamReader;
 
-/**
+/*
  * Run a Tic Tac Toe game interactively on the console.
  */
 public class Main {
