@@ -113,6 +113,10 @@ public class TicTacToeConsoleController implements TicTacToeController{
 
     String move2 = scanner.next();
 
+    if (move2.equalsIgnoreCase("Q")){
+      return -1;
+    }
+
     try {
       int row = Integer.parseInt(move1) - 1;
       int column = Integer.parseInt(move2) - 1;
