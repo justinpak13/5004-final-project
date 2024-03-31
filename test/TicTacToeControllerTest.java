@@ -1,15 +1,14 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
+import java.io.StringReader;
+import java.util.Arrays;
+import org.junit.Test;
 import tictactoe.FailingAppendable;
 import tictactoe.Player;
 import tictactoe.TicTacToe;
 import tictactoe.TicTacToeConsoleController;
 import tictactoe.TicTacToeController;
 import tictactoe.TicTacToeModel;
-import java.io.StringReader;
-import java.util.Arrays;
-import org.junit.Test;
 
 /**
  * Test cases for the tic tac toe controller, using mocks for readable and appendable.
@@ -123,7 +122,7 @@ public class TicTacToeControllerTest {
 
   // Input where the q comes instead of an integer for the row
   @Test
-  public void testQRow() {
+  public void testQuitRow() {
     TicTacToe m = new TicTacToeModel();
     StringReader input = new StringReader("3 3 2 2 q 4");
     StringBuilder gameLog = new StringBuilder();
@@ -136,7 +135,7 @@ public class TicTacToeControllerTest {
 
   // Input where the q comes instead of an integer for the column
   @Test
-  public void testQColumn() {
+  public void testQuitColumn() {
     TicTacToe m = new TicTacToeModel();
     StringReader input = new StringReader("3 3 2 2 3 Q");
     StringBuilder gameLog = new StringBuilder();
@@ -157,8 +156,9 @@ public class TicTacToeControllerTest {
     c.playGame(m);
     String[] lines = gameLog.toString().split("\n");
     assertEquals(19, lines.length);
-    assertEquals("java.lang.IllegalArgumentException: Not a valid number: adsf 3", lines[lines.length - 13]);
-    }
+    assertEquals("java.lang.IllegalArgumentException: Not a valid number: adsf 3",
+            lines[lines.length - 13]);
+  }
 
   // Input where non-integer garbage comes instead of an integer for the column
   @Test
@@ -170,7 +170,8 @@ public class TicTacToeControllerTest {
     c.playGame(m);
     String[] lines = gameLog.toString().split("\n");
     assertEquals(19, lines.length);
-    assertEquals("java.lang.IllegalArgumentException: Not a valid number: 3 asdf", lines[lines.length - 13]);
+    assertEquals("java.lang.IllegalArgumentException: Not a valid number: 3 asdf",
+            lines[lines.length - 13]);
   }
 
   // Input where the move is integers, but outside the bounds of the board
@@ -184,7 +185,8 @@ public class TicTacToeControllerTest {
     c.playGame(m);
     String[] lines = gameLog.toString().split("\n");
     assertEquals(19, lines.length);
-    assertEquals("java.lang.IllegalArgumentException: Not a valid move out of range: 3 4", lines[lines.length - 13]);
+    assertEquals("java.lang.IllegalArgumentException: Not a valid move out of range: 3 4",
+            lines[lines.length - 13]);
   }
 
   @Test
@@ -196,7 +198,8 @@ public class TicTacToeControllerTest {
     c.playGame(m);
     String[] lines = gameLog.toString().split("\n");
     assertEquals(19, lines.length);
-    assertEquals("java.lang.IllegalArgumentException: Not a valid move out of range: 3 0", lines[lines.length - 13]);
+    assertEquals("java.lang.IllegalArgumentException: Not a valid move out of range: 3 0",
+            lines[lines.length - 13]);
   }
   // Input where the move is integers, but invalid because the cell is occupied
 
@@ -229,7 +232,8 @@ public class TicTacToeControllerTest {
   @Test
   public void multipleInvalidMovesCompleted() {
     TicTacToe m = new TicTacToeModel();
-    StringReader input = new StringReader("1 1 1 2 sdaf 2 2 1 903 3 sd 3 1 2 1 3 2 2 3 1 1 3 3 1 1 3 3 2 3 3 2 3");
+    StringReader input = new StringReader("1 1 1 2 sdaf 2 2 1 903 3 sd 3 1 2 1 3 2"
+            + " 2 3 1 1 3 3 1 1 3 3 2 3 3 2 3");
     StringBuilder gameLog = new StringBuilder();
     TicTacToeController c = new TicTacToeConsoleController(input, gameLog);
     c.playGame(m);

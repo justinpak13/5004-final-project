@@ -12,6 +12,7 @@
       <list>
         <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
         <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
+        <ConfigurationLocation id="b594c7f2-fd22-4e1c-a060-75b31688a5b9" type="LOCAL_FILE" scope="All" description="Northeastern">$PROJECT_DIR$/../config/northeastern_checks-1.xml</ConfigurationLocation>
         <ConfigurationLocation id="79c5de6c-ab0d-40ac-ba5d-fe908a91c3d1" type="LOCAL_FILE" scope="All" description="Northeastern">$PROJECT_DIR$/../../../northeastern_checks-1.xml</ConfigurationLocation>
       </list>
     </option>
