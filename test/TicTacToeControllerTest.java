@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 
+import tictactoe.FailingAppendable;
 import tictactoe.TicTacToe;
 import tictactoe.TicTacToeConsoleController;
 import tictactoe.TicTacToeController;

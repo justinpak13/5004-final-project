@@ -23,15 +23,18 @@ public class TicTacToeConsoleController implements TicTacToeController{
     boolean playGame = true;
     while (playGame){
 
+      displayBoard(m);
+
       // loop to request a move until player gives valid move
       boolean invalidInput = true;
+      requestMove(m.getTurn());
       while (invalidInput){
-        requestMove(m.getTurn());
         try {
           int quitCheck = getMove(m);
           if (quitCheck == -1){
             playGame = false;
             printQuit(m);
+            displayBoard(m);
             break;
           }
           invalidInput = false;
@@ -40,9 +43,8 @@ public class TicTacToeConsoleController implements TicTacToeController{
         }
       }
 
-      displayBoard(m);
-
       if (m.isGameOver()){
+          displayBoard(m);
           announceWinner(m.getWinner());
           break;
       }
@@ -61,7 +63,7 @@ public class TicTacToeConsoleController implements TicTacToeController{
     try {
       output.append("Game is over! ");
       if (winningPlayer == null){
-        output.append("Tie Game! \n");
+        output.append("Tie game.\n");
       } else if (winningPlayer == Player.X){
         output.append("X wins! \n");
       } else {
@@ -77,7 +79,7 @@ public class TicTacToeConsoleController implements TicTacToeController{
       output.append(m.toString());
       output.append("\n");
     } catch (IOException e){
-      throw new IllegalArgumentException(e);
+      throw new IllegalStateException(e);
     }
 
   }
@@ -104,27 +106,24 @@ public class TicTacToeConsoleController implements TicTacToeController{
   }
 
   private int getMove(TicTacToe m) throws IllegalArgumentException{
-    String move = scanner.nextLine();
-    if (move.equalsIgnoreCase("Q")){
+    String move1 = scanner.next();
+    if (move1.equalsIgnoreCase("Q")){
       return -1;
+    }
 
-    }
-    String[] splitted = move.split(" ");
-    if (splitted.length != 2){
-      throw new IllegalArgumentException("Not enough arguments for valid move: " + move);
-    }
+    String move2 = scanner.next();
 
     try {
-      int row = Integer.parseInt(splitted[0]);
-      int column = Integer.parseInt(splitted[1]);
+      int row = Integer.parseInt(move1) - 1;
+      int column = Integer.parseInt(move2) - 1;
 
       if (row < 0 || row > 2 || column < 0 || column > 2){
-        throw new IllegalArgumentException("Not a valid move out of range: " + move);
+        throw new IllegalArgumentException("Not a valid move out of range: " + move1 + " " + move2);
       }
       m.move(row, column);
       return 0;
     } catch (NumberFormatException e){
-      throw new IllegalArgumentException("Not a valid number: " + move);
+      throw new IllegalArgumentException("Not a valid number: " + move1 + " " + move2);
     }
   }
 }
