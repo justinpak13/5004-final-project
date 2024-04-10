@@ -2,33 +2,33 @@ package tictactoe;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.font.FontRenderContext;
+import java.awt.font.GlyphVector;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ImageObserver;
+import java.awt.image.RenderedImage;
+import java.awt.image.renderable.RenderableImage;
+import java.text.AttributedCharacterIterator;
+import java.util.Map;
 
 public class SwingTicTacToeView extends JFrame implements TicTacToeView {
 
+  Panel panel;
   public SwingTicTacToeView(String title){
     super(title);
+    panel = new Panel(this);
 
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    Dimension screenSize = this.getContentPane().getSize();
     setSize(screenSize);
     this.setMinimumSize(screenSize);
-    setLocation(400, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    this.setLayout(new FlowLayout());
-
-    //JLabel display = new JLabel("test for display");
-
-    JPanel panel = new JPanel();
-    panel.setMinimumSize(new Dimension(300, 300));
-    panel.setBackground(Color.BLUE);
     this.add(panel);
-    //this.add(display);
-
-
-    pack();
-    double width = this.getContentPane().getSize().getWidth();
-    double height = this.getContentPane().getSize().getHeight();
+    this.pack();
 
     setVisible(true);
   }
+
 }
