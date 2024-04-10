@@ -13,4 +13,6 @@ public interface TicTacToeController {
    * @param m a non-null tic tac toe Model
    */
   void playGame(TicTacToe m);
+
+  void getInput(int coordinate);
 }

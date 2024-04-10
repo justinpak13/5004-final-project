@@ -28,18 +28,40 @@ public class Panel extends JPanel implements MouseListener {
   }
 
 
+  private int calculateCoordinate(int x, int y){
+    int coordinate = 3;
+    if (y < (int)(getHeight()) * 0.33){
+      coordinate *= 0;
+    } else if (y < (int)(getHeight()) * 0.66){
+      coordinate *= 1;
+    } else {
+      coordinate *= 2;
+    }
+
+    if (x < (int)(getWidth()) * 0.33){
+      coordinate += 1;
+    } else if (x < (int)(getWidth()) * 0.66){
+      coordinate += 2;
+    } else {
+      coordinate += 3;
+    }
+
+    return coordinate;
+
+  }
 
   @Override
   public void mouseClicked(MouseEvent e) {
-    System.out.println(e.getX());
-    System.out.println(e.getY());
 
-    RectangleComponent rc = new RectangleComponent(e.getX(), e.getY());
-    view.add(rc);
-    view.revalidate();
-    view.repaint();
+    int x = e.getX();
+    int y = e.getY();
 
+    view.sendInput(calculateCoordinate(x, y));
 
+    //RectangleComponent rc = new RectangleComponent(e.getX(), e.getY());
+    //view.add(rc);
+    //view.revalidate();
+    //view.repaint();
   }
 
   @Override

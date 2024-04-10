@@ -68,6 +68,11 @@ public class TicTacToeConsoleController implements TicTacToeController {
     }
   }
 
+  @Override
+  public void getInput(int coordinate) {
+
+  }
+
   /**
    * Helper function used to print the quitting statement.
    * @param m the tictactoe model

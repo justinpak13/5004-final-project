@@ -18,5 +18,42 @@ public class SwingTicTacToeController implements TicTacToeController {
   @Override
   public void playGame(TicTacToe m) {
 
+    // main game loop
+    boolean playGame = true;
+    this.view.addController(this);
+    while (playGame) {
+
+      // loop to request a move until player gives valid move
+      boolean invalidInput = true;
+      this.view.requestTurn(m.getTurn());
+
+      while (invalidInput) {
+        //try {
+        //  int quitCheck = getMove(m);
+        //  if (quitCheck == -1) {
+        //    playGame = false;
+        //    printQuit(m);
+        //    displayBoard(m);
+        //    break;
+        //  }
+        //  invalidInput = false;
+        //} catch (IllegalArgumentException e) {
+        //  retry(e);
+        //}
+      }
+
+      //  if (m.isGameOver()) {
+      //    displayBoard(m);
+      //    announceWinner(m.getWinner());
+      //    break;
+      //  }
+    }
   }
+
+  public void getInput(int coordinate){
+    System.out.println(coordinate);
+
+  }
+
+
 }
