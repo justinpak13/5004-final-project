@@ -16,8 +16,8 @@ public class Panel extends JPanel implements MouseListener {
 
 
   public void paint (Graphics g){
-    double topMargin = 0.15;
-    double bottomMargin = 0.85;
+    double topMargin = 0.05;
+    double bottomMargin = 0.95;
 
     Graphics2D g2d = (Graphics2D) g;
     g2d.setStroke(new BasicStroke(10));
@@ -50,6 +50,30 @@ public class Panel extends JPanel implements MouseListener {
 
   }
 
+  public void drawCircle(int row, int column){
+
+    int x = (int)((column) * getWidth() * 0.33)+ (int)(getWidth()*0.08);
+    int y = (int)((row) * getHeight() * 0.33) + (int)(getHeight()*0.08);
+
+    CircleComponent circle = new CircleComponent(x, y);
+
+    view.add(circle);
+    view.revalidate();
+    view.repaint();
+  }
+
+  public void drawCross(int row, int column){
+
+    int x = (int)((column) * getWidth() * 0.33)+ (int)(getWidth()*0.17);
+    int y = (int)((row) * getHeight() * 0.33) + (int)(getHeight()*0.15);
+
+    CrossComponent circle = new CrossComponent(x, y);
+
+    view.add(circle);
+    view.revalidate();
+    view.repaint();
+  }
+
   @Override
   public void mouseClicked(MouseEvent e) {
 
@@ -58,10 +82,6 @@ public class Panel extends JPanel implements MouseListener {
 
     view.sendInput(calculateCoordinate(x, y));
 
-    //RectangleComponent rc = new RectangleComponent(e.getX(), e.getY());
-    //view.add(rc);
-    //view.revalidate();
-    //view.repaint();
   }
 
   @Override

@@ -62,7 +62,37 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
 
   public void sendInput(int coordinate){
     controller.getInput(coordinate);
+  }
+
+  public void drawMark(Player player, int row, int column){
+    if (player == Player.X){
+      this.panel.drawCross(row, column);
+    } else {
+      this.panel.drawCircle(row, column);
+    }
+  }
+
+  @Override
+  public void displayError(IllegalArgumentException e) {
+    label.setText(e.getMessage());
+  }
+
+  @Override
+  public void displayError(IllegalStateException e) {
+    label.setText(e.getMessage());
+  }
+
+  public void displayWinner(Player winner){
+    if (winner == Player.X){
+      label.setText("GAME OVER! Winner is X");
+    } else {
+      label.setText("GAME OVER! Winner is O");
+    }
 
   }
 
+  public void displayTie() {
+    label.setText("TIE GAME!");
+
+  }
 }

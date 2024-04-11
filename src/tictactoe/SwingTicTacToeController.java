@@ -51,7 +51,76 @@ public class SwingTicTacToeController implements TicTacToeController {
   }
 
   public void getInput(int coordinate){
-    System.out.println(coordinate);
+    inputMove(coordinate);
+  }
+
+  private void inputMove(int coordinate){
+    int row, column;
+    switch (coordinate){
+      case 1:
+        row = 0;
+        column = 0;
+        break;
+
+      case 2:
+        row = 0;
+        column = 1;
+        break;
+
+      case 3:
+        row = 0;
+        column = 2;
+        break;
+
+      case 4:
+        row = 1;
+        column = 0;
+        break;
+
+      case 5:
+        row = 1;
+        column = 1;
+        break;
+
+      case 6:
+        row = 1;
+        column = 2;
+        break;
+
+      case 7:
+        row = 2;
+        column = 0;
+        break;
+
+      case 8:
+        row = 2;
+        column = 1;
+        break;
+      default:
+        row = 2;
+        column = 2;
+    }
+    try {
+      Player mark = model.getTurn();
+      model.move(row, column);
+      view.drawMark(mark, row, column);
+      if (model.isGameOver()){
+        if (model.getWinner() == null){
+          view.displayTie();
+        } else {
+          view.displayWinner(model.getWinner());
+        }
+
+      } else {
+        view.requestTurn(model.getTurn());
+
+      }
+    } catch (IllegalArgumentException e){
+      view.displayError(e);
+    } catch (IllegalStateException e){
+      view.displayError(e);
+    }
+    System.out.println(model.toString());
 
   }
 
