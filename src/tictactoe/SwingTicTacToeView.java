@@ -28,15 +28,16 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
     this.controller = controller;
 
     setMinimumSize(new Dimension(500, 500));
+    getContentPane().setBackground(new Color(180, 190, 254));
     setLayout(new BorderLayout());
+
 
 
     panel = new Panel(this);
     panel.setPreferredSize(getSize());
-    panel.setBackground(Color.CYAN);
 
-    label = new JLabel("TEST");
-    label.setFont(new Font("Serif", Font.PLAIN, 30));
+    label = new JLabel("", SwingConstants.CENTER);
+    label.setFont(new Font("Serif", Font.PLAIN, 50));
 
     Dimension screenSize = this.getContentPane().getSize();
     setSize(screenSize);
@@ -88,11 +89,9 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
     } else {
       label.setText("GAME OVER! Winner is O");
     }
-
   }
 
   public void displayTie() {
     label.setText("TIE GAME!");
-
   }
 }

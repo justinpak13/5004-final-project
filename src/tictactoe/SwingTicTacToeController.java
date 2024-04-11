@@ -3,6 +3,7 @@ package tictactoe;
 public class SwingTicTacToeController implements TicTacToeController {
   private TicTacToe model;
   private TicTacToeView view;
+  private boolean gameInProgress;
 
   public SwingTicTacToeController(TicTacToeView view, TicTacToe model){
     this.view = view;
@@ -17,37 +18,9 @@ public class SwingTicTacToeController implements TicTacToeController {
    */
   @Override
   public void playGame(TicTacToe m) {
-
-    // main game loop
-    boolean playGame = true;
+    gameInProgress = true;
     this.view.addController(this);
-    while (playGame) {
-
-      // loop to request a move until player gives valid move
-      boolean invalidInput = true;
-      this.view.requestTurn(m.getTurn());
-
-      while (invalidInput) {
-        //try {
-        //  int quitCheck = getMove(m);
-        //  if (quitCheck == -1) {
-        //    playGame = false;
-        //    printQuit(m);
-        //    displayBoard(m);
-        //    break;
-        //  }
-        //  invalidInput = false;
-        //} catch (IllegalArgumentException e) {
-        //  retry(e);
-        //}
-      }
-
-      //  if (m.isGameOver()) {
-      //    displayBoard(m);
-      //    announceWinner(m.getWinner());
-      //    break;
-      //  }
-    }
+    this.view.requestTurn(m.getTurn());
   }
 
   public void getInput(int coordinate){
@@ -100,29 +73,28 @@ public class SwingTicTacToeController implements TicTacToeController {
         row = 2;
         column = 2;
     }
-    try {
-      Player mark = model.getTurn();
-      model.move(row, column);
-      view.drawMark(mark, row, column);
-      if (model.isGameOver()){
-        if (model.getWinner() == null){
-          view.displayTie();
+    if (gameInProgress){
+      try {
+        Player mark = model.getTurn();
+        model.move(row, column);
+        view.drawMark(mark, row, column);
+        if (model.isGameOver()){
+          gameInProgress = false;
+          if (model.getWinner() == null){
+            view.displayTie();
+          } else {
+            view.displayWinner(model.getWinner());
+          }
+
         } else {
-          view.displayWinner(model.getWinner());
+          view.requestTurn(model.getTurn());
+
         }
-
-      } else {
-        view.requestTurn(model.getTurn());
-
+      } catch (IllegalArgumentException e){
+        view.displayError(e);
+      } catch (IllegalStateException e){
+        view.displayError(e);
       }
-    } catch (IllegalArgumentException e){
-      view.displayError(e);
-    } catch (IllegalStateException e){
-      view.displayError(e);
     }
-    System.out.println(model.toString());
-
   }
-
-
 }
