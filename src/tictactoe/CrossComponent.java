@@ -6,15 +6,27 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
 
+/**
+ * Class used to represent the X player.
+ */
 public class CrossComponent  extends JComponent {
   int xcoord;
   int ycoord;
 
+  /**
+   * Constructor for the cross class.
+   * @param x the x coordinate
+   * @param y the y coordinate
+   */
   CrossComponent(int x, int y) {
     this.xcoord = x;
     this.ycoord = y;
   }
 
+  /**
+   * Overridden paint component method.
+   * @param g the <code>Graphics</code> object to protect
+   */
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);

@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/**
+ * Main view class for tic tac toe.
+ */
 public class SwingTicTacToeView extends JFrame implements TicTacToeView {
 
   private final Panel panel;
@@ -15,7 +18,10 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
   private TicTacToeController controller;
 
 
-
+  /**
+   * Constructor for the tic tac toe view class.
+   * @param title the title of the jframe
+   */
   public SwingTicTacToeView(String title) {
     super(title);
 
@@ -40,10 +46,18 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
     setVisible(true);
   }
 
+  /**
+   * Connects the view to the controller.
+   * @param controller the controller class.
+   */
   public void addController(TicTacToeController controller) {
     this.controller = controller;
   }
 
+  /**
+   * Displays which player turn it is.
+   * @param currentPlayer the current player turn
+   */
   public void requestTurn(Player currentPlayer) {
     if (currentPlayer == Player.X) {
       label.setText("Turn: X");
@@ -52,10 +66,20 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
     }
   }
 
+  /**
+   * Sends the coordinate to the controller.
+   * @param coordinate the section of the panel clicked.
+   */
   public void sendInput(int coordinate) {
     controller.getInput(coordinate);
   }
 
+  /**
+   * draws the corresponding mark in the coordinate position.
+   * @param player current player
+   * @param row the row
+   * @param column the column
+   */
   public void drawMark(Player player, int row, int column) {
     if (player == Player.X) {
       this.panel.drawCross(row, column);
@@ -64,16 +88,28 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
     }
   }
 
+  /**
+   * Displays message for IllegalArugmentExceptions.
+   * @param e Illegal argument error
+   */
   @Override
   public void displayError(IllegalArgumentException e) {
     label.setText(e.getMessage());
   }
 
+  /**
+   * Displays message for IllegalStateExceptions.
+   * @param e Illegal state error
+   */
   @Override
   public void displayError(IllegalStateException e) {
     label.setText(e.getMessage());
   }
 
+  /**
+   * Displays the winner.
+   * @param winner the winning player
+   */
   public void displayWinner(Player winner) {
     if (winner == Player.X) {
       label.setText("GAME OVER! Winner is X");
@@ -82,6 +118,9 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
     }
   }
 
+  /**
+   * Displays message given a tie.
+   */
   public void displayTie() {
     label.setText("TIE GAME!");
   }

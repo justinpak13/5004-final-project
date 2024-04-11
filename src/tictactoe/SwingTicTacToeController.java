@@ -1,10 +1,18 @@
 package tictactoe;
 
+/**
+ * Controller class for the swing tictactoe view and model.
+ */
 public class SwingTicTacToeController implements TicTacToeController {
   private TicTacToe model;
   private TicTacToeView view;
   private boolean gameInProgress;
 
+  /**
+   * Constructor for the controller class.
+   * @param view the view class.
+   * @param model the model class.
+   */
   public SwingTicTacToeController(TicTacToeView view, TicTacToe model) {
     this.view = view;
     this.model = model;
@@ -23,10 +31,18 @@ public class SwingTicTacToeController implements TicTacToeController {
     this.view.requestTurn(m.getTurn());
   }
 
+  /**
+   * method used to communicate between view and model.
+   * @param coordinate the corresponding section of the view clicked.
+   */
   public void getInput(int coordinate) {
     inputMove(coordinate);
   }
 
+  /**
+   * Helper function that houses the main logic for the game.
+   * @param coordinate the corresponding section of the view clicked
+   */
   private void inputMove(int coordinate) {
     int row;
     int column;
