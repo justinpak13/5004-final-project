@@ -1,29 +1,32 @@
 package tictactoe;
 
-import java.awt.*;
-
-import javax.swing.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JComponent;
 
 public class CircleComponent extends JComponent {
-  int x,y;
+  int xcoord;
+  int ycoord;
 
-  CircleComponent(int x, int y){
-    this.x = x;
-    this.y =y;
+  CircleComponent(int x, int y) {
+    this.xcoord = x;
+    this.ycoord = y;
   }
 
   @Override
-  public void paintComponent(Graphics g){
+  public void paintComponent(Graphics g) {
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g;
 
-    Color c = new Color(255,10,10);
+    Color c = new Color(255, 10, 10);
     g2d.setColor(c);
     g2d.setStroke(new BasicStroke(8));
 
 
 
-    g2d.drawOval(x, y, (int)(getWidth() * 0.20), (int)(getHeight() * 0.20));
+    g2d.drawOval(xcoord, ycoord, (int) (getWidth() * 0.20), (int) (getHeight() * 0.20));
 
   }
 }

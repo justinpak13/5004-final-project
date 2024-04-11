@@ -5,7 +5,7 @@ public class SwingTicTacToeController implements TicTacToeController {
   private TicTacToeView view;
   private boolean gameInProgress;
 
-  public SwingTicTacToeController(TicTacToeView view, TicTacToe model){
+  public SwingTicTacToeController(TicTacToeView view, TicTacToe model) {
     this.view = view;
     this.model = model;
   }
@@ -23,13 +23,15 @@ public class SwingTicTacToeController implements TicTacToeController {
     this.view.requestTurn(m.getTurn());
   }
 
-  public void getInput(int coordinate){
+  public void getInput(int coordinate) {
     inputMove(coordinate);
   }
 
-  private void inputMove(int coordinate){
-    int row, column;
-    switch (coordinate){
+  private void inputMove(int coordinate) {
+    int row;
+    int column;
+
+    switch (coordinate) {
       case 1:
         row = 0;
         column = 0;
@@ -73,14 +75,14 @@ public class SwingTicTacToeController implements TicTacToeController {
         row = 2;
         column = 2;
     }
-    if (gameInProgress){
+    if (gameInProgress) {
       try {
         Player mark = model.getTurn();
         model.move(row, column);
         view.drawMark(mark, row, column);
-        if (model.isGameOver()){
+        if (model.isGameOver()) {
           gameInProgress = false;
-          if (model.getWinner() == null){
+          if (model.getWinner() == null) {
             view.displayTie();
           } else {
             view.displayWinner(model.getWinner());
@@ -90,9 +92,9 @@ public class SwingTicTacToeController implements TicTacToeController {
           view.requestTurn(model.getTurn());
 
         }
-      } catch (IllegalArgumentException e){
+      } catch (IllegalArgumentException e) {
         view.displayError(e);
-      } catch (IllegalStateException e){
+      } catch (IllegalStateException e) {
         view.displayError(e);
       }
     }

@@ -1,37 +1,27 @@
 package tictactoe;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.font.GlyphVector;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ImageObserver;
-import java.awt.image.RenderedImage;
-import java.awt.image.renderable.RenderableImage;
-import java.io.IOException;
-import java.text.AttributedCharacterIterator;
-import java.util.Map;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class SwingTicTacToeView extends JFrame implements TicTacToeView {
 
-  private Panel panel;
-  private JLabel label;
+  private final Panel panel;
+  private final JLabel label;
   private TicTacToeController controller;
 
 
 
-  public SwingTicTacToeView(String title){
+  public SwingTicTacToeView(String title) {
     super(title);
-
-    this.controller = controller;
 
     setMinimumSize(new Dimension(500, 500));
     getContentPane().setBackground(new Color(180, 190, 254));
     setLayout(new BorderLayout());
-
-
 
     panel = new Panel(this);
     panel.setPreferredSize(getSize());
@@ -50,23 +40,24 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
     setVisible(true);
   }
 
-  public void addController(TicTacToeController controller){
+  public void addController(TicTacToeController controller) {
     this.controller = controller;
   }
+
   public void requestTurn(Player currentPlayer) {
-    if (currentPlayer == Player.X){
+    if (currentPlayer == Player.X) {
       label.setText("Turn: X");
     } else {
       label.setText("Turn: O");
     }
   }
 
-  public void sendInput(int coordinate){
+  public void sendInput(int coordinate) {
     controller.getInput(coordinate);
   }
 
-  public void drawMark(Player player, int row, int column){
-    if (player == Player.X){
+  public void drawMark(Player player, int row, int column) {
+    if (player == Player.X) {
       this.panel.drawCross(row, column);
     } else {
       this.panel.drawCircle(row, column);
@@ -83,8 +74,8 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
     label.setText(e.getMessage());
   }
 
-  public void displayWinner(Player winner){
-    if (winner == Player.X){
+  public void displayWinner(Player winner) {
+    if (winner == Player.X) {
       label.setText("GAME OVER! Winner is X");
     } else {
       label.setText("GAME OVER! Winner is O");

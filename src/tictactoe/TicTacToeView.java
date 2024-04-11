@@ -9,9 +9,10 @@ public interface TicTacToeView {
 
   void displayError(IllegalArgumentException e);
 
+  void displayError(IllegalStateException e);
+
   void displayTie();
 
   void displayWinner(Player winner);
 
-  void displayError(IllegalStateException e);
 }
