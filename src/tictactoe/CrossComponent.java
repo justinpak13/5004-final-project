@@ -10,15 +10,15 @@ import javax.swing.JComponent;
  * Class used to represent the X player.
  */
 public class CrossComponent  extends JComponent {
-  int xcoord;
-  int ycoord;
+  private final int xcoord;
+  private final int ycoord;
 
   /**
    * Constructor for the cross class.
    * @param x the x coordinate
    * @param y the y coordinate
    */
-  CrossComponent(int x, int y) {
+  public CrossComponent(int x, int y) {
     this.xcoord = x;
     this.ycoord = y;
   }

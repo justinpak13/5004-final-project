@@ -10,15 +10,15 @@ import javax.swing.JComponent;
  * Class that represents the mark for the O player.
  */
 public class CircleComponent extends JComponent {
-  int xcoord;
-  int ycoord;
+  private final int xcoord;
+  private final int ycoord;
 
   /**
    * Constructor for the circle class.
    * @param x the x value
    * @param y the y value
    */
-  CircleComponent(int x, int y) {
+  public CircleComponent(int x, int y) {
     this.xcoord = x;
     this.ycoord = y;
   }

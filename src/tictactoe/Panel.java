@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  */
 public class Panel extends JPanel implements MouseListener {
 
-  SwingTicTacToeView view;
+  private final SwingTicTacToeView view;
 
   /**
    * Constructor for the panel class.
