@@ -42,7 +42,7 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView, KeyList
     setSize(screenSize);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    JLabel newLabel = new JLabel("test");
+    JLabel newLabel = new JLabel("Press esc at any time to reset");
     this.add(label,  BorderLayout.PAGE_START);
     this.add(panel, BorderLayout.CENTER);
     this.add(newLabel, BorderLayout.PAGE_END);

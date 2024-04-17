@@ -34,39 +34,39 @@ public class Panel extends JPanel implements MouseListener {
 
     // Drawing the grid
     g2d.setStroke(new BasicStroke(10));
-    g2d.drawLine((int) (view.getWidth() * 0.33), (int) (view.getHeight() * topMargin),
-            (int) (view.getWidth() * 0.33), (int) (view.getHeight() * bottomMargin));
-    g2d.drawLine((int) (view.getWidth() * 0.66), (int) (view.getHeight() * topMargin),
-            (int) (view.getWidth() * 0.66), (int) (view.getHeight() * bottomMargin));
-    g2d.drawLine((int) (view.getWidth() * topMargin), (int) (view.getHeight() * 0.33),
-            (int) (view.getWidth() * bottomMargin), (int) (view.getHeight() * 0.33));
-    g2d.drawLine((int) (view.getWidth() * topMargin), (int) (view.getHeight() * 0.66),
-            (int) (view.getWidth() * bottomMargin), (int) (view.getHeight() * 0.66));
+    g2d.drawLine((int) (this.getWidth() * 0.33), (int) (this.getHeight() * topMargin),
+            (int) (this.getWidth() * 0.33), (int) (this.getHeight() * bottomMargin));
+    g2d.drawLine((int) (this.getWidth() * 0.66), (int) (this.getHeight() * topMargin),
+            (int) (this.getWidth() * 0.66), (int) (this.getHeight() * bottomMargin));
+    g2d.drawLine((int) (this.getWidth() * topMargin), (int) (this.getHeight() * 0.33),
+            (int) (this.getWidth() * bottomMargin), (int) (this.getHeight() * 0.33));
+    g2d.drawLine((int) (this.getWidth() * topMargin), (int) (this.getHeight() * 0.66),
+            (int) (this.getWidth() * bottomMargin), (int) (this.getHeight() * 0.66));
 
     // drawing each mark based on board
     Player[][] board = view.getBoard();
     for (int i = 0; i < 3; i++){
       for (int j = 0; j < 3; j++){
         if (board[i][j] == Player.O){
-          int xcoord = (int) ((j) * view.getWidth() * 0.33) + (int) (view.getWidth() * 0.06);
-          int ycoord = (int) ((i) * view.getHeight() * 0.33) + (int) (view.getHeight() * 0.06);
+          int xcoord = (int) ((j) * this.getWidth() * 0.33) + (int) (this.getWidth() * 0.06);
+          int ycoord = (int) ((i) * this.getHeight() * 0.33) + (int) (this.getHeight() * 0.06);
           Color c = new Color(255, 10, 10);
           g2d.setColor(c);
           g2d.setStroke(new BasicStroke(8));
-          g2d.drawOval(xcoord, ycoord , (int) (view.getWidth() * 0.20), (int) (view.getHeight() * 0.20));
+          g2d.drawOval(xcoord, ycoord , (int) (this.getWidth() * 0.20), (int) (this.getHeight() * 0.20));
         }
 
         if (board[i][j] == Player.X){
-          int xcoord = (int) ((j) * view.getWidth() * 0.33) + (int) (view.getWidth() * 0.17);
-          int ycoord = (int) ((i) * view.getHeight() * 0.33) + (int) (view.getHeight() * 0.15);
+          int xcoord = (int) ((j) * this.getWidth() * 0.33) + (int) (this.getWidth() * 0.17);
+          int ycoord = (int) ((i) * this.getHeight() * 0.33) + (int) (this.getHeight() * 0.15);
           Color c = new Color(10, 10, 255);
           g2d.setColor(c);
           g2d.setStroke(new BasicStroke(8));
 
-          g2d.drawLine(xcoord - (int) (getWidth() * 0.10), ycoord - (int) (getHeight() * 0.10),
-                  xcoord + (int) (getWidth() * 0.10), ycoord + (int) (getHeight() * 0.10));
-          g2d.drawLine(xcoord + (int) (getWidth() * 0.10), ycoord - (int) (getHeight() * 0.10),
-                  xcoord - (int) (getWidth() * 0.10), ycoord + (int) (getHeight() * 0.10));
+          g2d.drawLine(xcoord - (int) (this.getWidth() * 0.10), ycoord - (int) (getHeight() * 0.10),
+                  xcoord + (int) (this.getWidth() * 0.10), ycoord + (int) (getHeight() * 0.10));
+          g2d.drawLine(xcoord + (int) (this.getWidth() * 0.10), ycoord - (int) (getHeight() * 0.10),
+                  xcoord - (int) (this.getWidth() * 0.10), ycoord + (int) (getHeight() * 0.10));
 
         }
 
@@ -86,17 +86,17 @@ public class Panel extends JPanel implements MouseListener {
    */
   private int calculateCoordinate(int x, int y) {
     int coordinate = 3;
-    if (y < (view.getHeight()) * 0.33) {
+    if (y < (this.getHeight()) * 0.33) {
       coordinate *= 0;
-    } else if (y < (view.getHeight()) * 0.66) {
+    } else if (y < (this.getHeight()) * 0.66) {
       coordinate *= 1;
     } else {
       coordinate *= 2;
     }
 
-    if (x < (view.getWidth()) * 0.33) {
+    if (x < (this.getWidth()) * 0.33) {
       coordinate += 1;
-    } else if (x < (view.getWidth()) * 0.66) {
+    } else if (x < (this.getWidth()) * 0.66) {
       coordinate += 2;
     } else {
       coordinate += 3;
