@@ -1,8 +1,6 @@
 package tictactoe;
 
-import java.awt.BasicStroke;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
@@ -33,15 +31,48 @@ public class Panel extends JPanel implements MouseListener {
     double bottomMargin = 0.95;
 
     Graphics2D g2d = (Graphics2D) g;
+
+    // Drawing the grid
     g2d.setStroke(new BasicStroke(10));
-    g2d.drawLine((int) (getWidth() * 0.33), (int) (getHeight() * topMargin),
-            (int) (getWidth() * 0.33), (int) (getHeight() * bottomMargin));
-    g2d.drawLine((int) (getWidth() * 0.66), (int) (getHeight() * topMargin),
-            (int) (getWidth() * 0.66), (int) (getHeight() * bottomMargin));
-    g2d.drawLine((int) (getWidth() * topMargin), (int) (getHeight() * 0.33),
-            (int) (getWidth() * bottomMargin), (int) (getHeight() * 0.33));
-    g2d.drawLine((int) (getWidth() * topMargin), (int) (getHeight() * 0.66),
-            (int) (getWidth() * bottomMargin), (int) (getHeight() * 0.66));
+    g2d.drawLine((int) (view.getWidth() * 0.33), (int) (view.getHeight() * topMargin),
+            (int) (view.getWidth() * 0.33), (int) (view.getHeight() * bottomMargin));
+    g2d.drawLine((int) (view.getWidth() * 0.66), (int) (view.getHeight() * topMargin),
+            (int) (view.getWidth() * 0.66), (int) (view.getHeight() * bottomMargin));
+    g2d.drawLine((int) (view.getWidth() * topMargin), (int) (view.getHeight() * 0.33),
+            (int) (view.getWidth() * bottomMargin), (int) (view.getHeight() * 0.33));
+    g2d.drawLine((int) (view.getWidth() * topMargin), (int) (view.getHeight() * 0.66),
+            (int) (view.getWidth() * bottomMargin), (int) (view.getHeight() * 0.66));
+
+    // drawing each mark based on board
+    Player[][] board = view.getBoard();
+    for (int i = 0; i < 3; i++){
+      for (int j = 0; j < 3; j++){
+        if (board[i][j] == Player.O){
+          int xcoord = (int) ((j) * view.getWidth() * 0.33) + (int) (view.getWidth() * 0.06);
+          int ycoord = (int) ((i) * view.getHeight() * 0.33) + (int) (view.getHeight() * 0.06);
+          Color c = new Color(255, 10, 10);
+          g2d.setColor(c);
+          g2d.setStroke(new BasicStroke(8));
+          g2d.drawOval(xcoord, ycoord , (int) (view.getWidth() * 0.20), (int) (view.getHeight() * 0.20));
+        }
+
+        if (board[i][j] == Player.X){
+          int xcoord = (int) ((j) * view.getWidth() * 0.33) + (int) (view.getWidth() * 0.17);
+          int ycoord = (int) ((i) * view.getHeight() * 0.33) + (int) (view.getHeight() * 0.15);
+          Color c = new Color(10, 10, 255);
+          g2d.setColor(c);
+          g2d.setStroke(new BasicStroke(8));
+
+          g2d.drawLine(xcoord - (int) (getWidth() * 0.10), ycoord - (int) (getHeight() * 0.10),
+                  xcoord + (int) (getWidth() * 0.10), ycoord + (int) (getHeight() * 0.10));
+          g2d.drawLine(xcoord + (int) (getWidth() * 0.10), ycoord - (int) (getHeight() * 0.10),
+                  xcoord - (int) (getWidth() * 0.10), ycoord + (int) (getHeight() * 0.10));
+
+        }
+
+      }
+
+    }
   }
 
 
@@ -53,25 +84,25 @@ public class Panel extends JPanel implements MouseListener {
    */
   private int calculateCoordinate(int x, int y) {
     int coordinate = 3;
-    if (y < (getHeight()) * 0.33) {
+    if (y < (view.getHeight()) * 0.33) {
       coordinate *= 0;
-    } else if (y < (getHeight()) * 0.66) {
+    } else if (y < (view.getHeight()) * 0.66) {
       coordinate *= 1;
     } else {
       coordinate *= 2;
     }
 
-    if (x < (getWidth()) * 0.33) {
+    if (x < (view.getWidth()) * 0.33) {
       coordinate += 1;
-    } else if (x < (getWidth()) * 0.66) {
+    } else if (x < (view.getWidth()) * 0.66) {
       coordinate += 2;
     } else {
       coordinate += 3;
     }
 
     return coordinate;
-
   }
+
 
   /**
    * Main drawing function for the O player.
@@ -80,8 +111,8 @@ public class Panel extends JPanel implements MouseListener {
    */
   public void drawCircle(int row, int column) {
 
-    int x = (int) ((column) * getWidth() * 0.33) + (int) (getWidth() * 0.08);
-    int y = (int) ((row) * getHeight() * 0.33) + (int) (getHeight() * 0.08);
+    int x = (int) ((column) * view.getWidth() * 0.33) + (int) (view.getWidth() * 0.08);
+    int y = (int) ((row) * view.getHeight() * 0.33) + (int) (view.getHeight() * 0.08);
 
     CircleComponent circle = new CircleComponent(x, y);
 
@@ -97,14 +128,14 @@ public class Panel extends JPanel implements MouseListener {
    */
   public void drawCross(int row, int column) {
 
-    int x = (int) ((column) * getWidth() * 0.33) + (int) (getWidth() * 0.17);
-    int y = (int) ((row) * getHeight() * 0.33) + (int) (getHeight() * 0.15);
+    int x = (int) ((column) * view.getWidth() * 0.33) + (int) (view.getWidth() * 0.17);
+    int y = (int) ((row) * view.getHeight() * 0.33) + (int) (view.getHeight() * 0.15);
 
     CrossComponent circle = new CrossComponent(x, y);
 
     view.add(circle);
-    view.revalidate();
-    view.repaint();
+    //view.revalidate();
+    //view.repaint();
   }
 
   /**

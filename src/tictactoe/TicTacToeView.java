@@ -48,4 +48,5 @@ public interface TicTacToeView {
    */
   void displayWinner(Player winner);
 
+  void updateBoard(Player[][] board);
 }

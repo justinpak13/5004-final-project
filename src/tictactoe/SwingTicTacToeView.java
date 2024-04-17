@@ -11,11 +11,12 @@ import javax.swing.SwingConstants;
 /**
  * Main view class for tic tac toe.
  */
-public class SwingTicTacToeView extends JFrame implements TicTacToeView {
+public class SwingTicTacToeView extends JFrame implements TicTacToeView{
 
   private final Panel panel;
   private final JLabel label;
   private TicTacToeController controller;
+  private Player[][] board;
 
 
   /**
@@ -41,6 +42,7 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
 
     this.add(label,  BorderLayout.PAGE_START);
     this.add(panel);
+
     this.pack();
 
     setVisible(true);
@@ -74,6 +76,15 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
     controller.getInput(coordinate);
   }
 
+  public void updateBoard(Player[][] board){
+    this.board = board;
+    this.panel.repaint();
+  }
+  public Player[][] getBoard(){
+    return this.board;
+
+  }
+
   /**
    * draws the corresponding mark in the coordinate position.
    * @param player current player
@@ -81,11 +92,11 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView {
    * @param column the column
    */
   public void drawMark(Player player, int row, int column) {
-    if (player == Player.X) {
-      this.panel.drawCross(row, column);
-    } else {
-      this.panel.drawCircle(row, column);
-    }
+    //if (player == Player.X) {
+    //  this.panel.drawCross(row, column);
+    //} else {
+    //  this.panel.drawCircle(row, column);
+    //}
   }
 
   /**

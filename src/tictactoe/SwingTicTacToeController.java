@@ -28,6 +28,7 @@ public class SwingTicTacToeController implements TicTacToeController {
   public void playGame(TicTacToe m) {
     gameInProgress = true;
     this.view.addController(this);
+    this.view.updateBoard(m.getBoard());
     this.view.requestTurn(m.getTurn());
   }
 
@@ -95,7 +96,7 @@ public class SwingTicTacToeController implements TicTacToeController {
       try {
         Player mark = model.getTurn();
         model.move(row, column);
-        view.drawMark(mark, row, column);
+        view.updateBoard(model.getBoard());
         if (model.isGameOver()) {
           gameInProgress = false;
           if (model.getWinner() == null) {
