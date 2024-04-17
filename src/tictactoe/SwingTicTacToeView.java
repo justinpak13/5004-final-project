@@ -4,9 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+
+import javax.swing.*;
 
 /**
  * Main view class for tic tac toe.
@@ -31,7 +30,7 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView{
     setLayout(new BorderLayout());
 
     panel = new Panel(this);
-    panel.setPreferredSize(getSize());
+    panel.setPreferredSize(new Dimension(500, 200));
 
     label = new JLabel("", SwingConstants.CENTER);
     label.setFont(new Font("Serif", Font.PLAIN, 50));
@@ -40,12 +39,15 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView{
     setSize(screenSize);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    JLabel newLabel = new JLabel("test");
     this.add(label,  BorderLayout.PAGE_START);
-    this.add(panel);
+    this.add(panel, BorderLayout.CENTER);
+    this.add(newLabel, BorderLayout.PAGE_END);
 
     this.pack();
+    this.setLocationRelativeTo(null);
 
-    setVisible(true);
+    this.setVisible(true);
   }
 
   /**
