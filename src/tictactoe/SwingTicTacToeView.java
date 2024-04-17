@@ -4,13 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
 /**
  * Main view class for tic tac toe.
  */
-public class SwingTicTacToeView extends JFrame implements TicTacToeView{
+public class SwingTicTacToeView extends JFrame implements TicTacToeView, KeyListener {
 
   private final Panel panel;
   private final JLabel label;
@@ -26,11 +28,12 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView{
     super(title);
 
     setMinimumSize(new Dimension(500, 500));
+    setSize(new Dimension(500, 900));
     getContentPane().setBackground(new Color(180, 190, 254));
     setLayout(new BorderLayout());
 
     panel = new Panel(this);
-    panel.setPreferredSize(new Dimension(500, 200));
+    panel.setPreferredSize(new Dimension(500, 500));
 
     label = new JLabel("", SwingConstants.CENTER);
     label.setFont(new Font("Serif", Font.PLAIN, 50));
@@ -43,6 +46,8 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView{
     this.add(label,  BorderLayout.PAGE_START);
     this.add(panel, BorderLayout.CENTER);
     this.add(newLabel, BorderLayout.PAGE_END);
+
+    this.addKeyListener(this);
 
     this.pack();
     this.setLocationRelativeTo(null);
@@ -136,5 +141,25 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView{
    */
   public void displayTie() {
     label.setText("TIE GAME!");
+  }
+
+  @Override
+  public void keyTyped(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e) {
+    if (e.getExtendedKeyCode() == 27){
+      this.controller.reset();
+      this.panel.repaint();
+
+    }
+
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+
   }
 }

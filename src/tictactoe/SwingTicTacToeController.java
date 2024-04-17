@@ -26,10 +26,19 @@ public class SwingTicTacToeController implements TicTacToeController {
    */
   @Override
   public void playGame(TicTacToe m) {
-    gameInProgress = true;
+    this.gameInProgress = true;
     this.view.addController(this);
     this.view.updateBoard(m.getBoard());
     this.view.requestTurn(m.getTurn());
+  }
+
+  public void reset(){
+    model = new TicTacToeModel();
+    this.view.addController(this);
+    this.gameInProgress = true;
+    this.view.updateBoard(model.getBoard());
+    this.view.requestTurn(model.getTurn());
+
   }
 
   /**

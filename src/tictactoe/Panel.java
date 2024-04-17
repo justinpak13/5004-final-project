@@ -73,6 +73,8 @@ public class Panel extends JPanel implements MouseListener {
       }
 
     }
+    view.revalidate();
+    view.repaint();
   }
 
 

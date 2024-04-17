@@ -15,4 +15,6 @@ public interface TicTacToeController {
   void playGame(TicTacToe m);
 
   void getInput(int coordinate);
+
+  void reset();
 }
