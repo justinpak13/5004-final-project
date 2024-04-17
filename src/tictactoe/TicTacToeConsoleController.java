@@ -34,7 +34,6 @@ public class TicTacToeConsoleController implements TicTacToeController {
    * @param m a non-null tic tac toe Model
    * @throws IllegalStateException given any incorrect state of the game.
    */
-  @Override
   public void playGame(TicTacToe m) throws IllegalStateException {
     // main game loop
     boolean playGame = true;
@@ -66,6 +65,15 @@ public class TicTacToeConsoleController implements TicTacToeController {
         break;
       }
     }
+  }
+
+  /**
+   * Execute a single game of tic-tac-toe given a tic-tac-toe Model. When the game is over,
+   * the playGame method ends.
+   */
+  @Override
+  public void playGame() {
+
   }
 
   @Override

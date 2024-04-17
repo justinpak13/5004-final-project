@@ -22,26 +22,21 @@ public class SwingTicTacToeController implements TicTacToeController {
    * Execute a single game of tic tac toe given a tic tac toe Model. When the game is over,
    * the playGame method ends.
    *
-   * @param m a non-null tic tac toe Model
    */
   @Override
-  public void playGame(TicTacToe m) {
+  public void playGame() {
     this.gameInProgress = true;
     this.view.addController(this);
-    this.view.updateBoard(m.getBoard());
-    this.view.requestTurn(m.getTurn());
+    this.view.updateBoard(this.model.getBoard());
+    this.view.requestTurn(this.model.getTurn());
   }
 
   /**
    * Function used to reset game.
    */
   public void reset() {
-    model = new TicTacToeModel();
-    this.view.addController(this);
-    this.gameInProgress = true;
-    this.view.updateBoard(model.getBoard());
-    this.view.requestTurn(model.getTurn());
-
+    this.model = new TicTacToeModel();
+    this.playGame();
   }
 
   /**

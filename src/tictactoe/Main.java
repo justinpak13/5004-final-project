@@ -13,6 +13,6 @@ public class Main {
     TicTacToe m = new TicTacToeModel();
     TicTacToeView v = new SwingTicTacToeView("Tic-Tac-Toe");
     TicTacToeController c = new SwingTicTacToeController(v, m);
-    c.playGame(m);
+    c.playGame();
   }
 }
