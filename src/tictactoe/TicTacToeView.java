@@ -17,13 +17,6 @@ public interface TicTacToeView {
    */
   public void addController(TicTacToeController controller);
 
-  /**
-   * draws the corresponding mark in the coordinate position.
-   * @param turn current player
-   * @param row the row
-   * @param column the column
-   */
-  void drawMark(Player turn, int row, int column);
 
   /**
    * Displays message for IllegalArugmentExceptions.
@@ -48,5 +41,10 @@ public interface TicTacToeView {
    */
   void displayWinner(Player winner);
 
+
+  /**
+   * Function used to get a representation of the board from the controller.
+   * @param board 2d array representation of board.
+   */
   void updateBoard(Player[][] board);
 }

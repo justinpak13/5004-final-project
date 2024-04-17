@@ -105,41 +105,6 @@ public class Panel extends JPanel implements MouseListener {
     return coordinate;
   }
 
-
-  /**
-   * Main drawing function for the O player.
-   * @param row which row to draw
-   * @param column which column to draw
-   */
-  public void drawCircle(int row, int column) {
-
-    int x = (int) ((column) * view.getWidth() * 0.33) + (int) (view.getWidth() * 0.08);
-    int y = (int) ((row) * view.getHeight() * 0.33) + (int) (view.getHeight() * 0.08);
-
-    CircleComponent circle = new CircleComponent(x, y);
-
-    view.add(circle);
-    view.revalidate();
-    view.repaint();
-  }
-
-  /**
-   * Main drawing function for the X player.
-   * @param row which row to draw
-   * @param column which column to draw
-   */
-  public void drawCross(int row, int column) {
-
-    int x = (int) ((column) * view.getWidth() * 0.33) + (int) (view.getWidth() * 0.17);
-    int y = (int) ((row) * view.getHeight() * 0.33) + (int) (view.getHeight() * 0.15);
-
-    CrossComponent circle = new CrossComponent(x, y);
-
-    view.add(circle);
-    //view.revalidate();
-    //view.repaint();
-  }
-
   /**
    * Overridden mouse clicked function.
    * @param e the event to be processed

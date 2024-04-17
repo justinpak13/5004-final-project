@@ -32,7 +32,10 @@ public class SwingTicTacToeController implements TicTacToeController {
     this.view.requestTurn(m.getTurn());
   }
 
-  public void reset(){
+  /**
+   * Function used to reset game.
+   */
+  public void reset() {
     model = new TicTacToeModel();
     this.view.addController(this);
     this.gameInProgress = true;
@@ -103,7 +106,6 @@ public class SwingTicTacToeController implements TicTacToeController {
     }
     if (gameInProgress) {
       try {
-        Player mark = model.getTurn();
         model.move(row, column);
         view.updateBoard(model.getBoard());
         if (model.isGameOver()) {

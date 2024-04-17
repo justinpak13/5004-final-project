@@ -6,11 +6,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
- * Main view class for tic tac toe.
+ * Main view class for tic-tac-toe.
  */
 public class SwingTicTacToeView extends JFrame implements TicTacToeView, KeyListener {
 
@@ -21,28 +22,32 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView, KeyList
 
 
   /**
-   * Constructor for the tic tac toe view class.
-   * @param title the title of the jframe
+   * Constructor for the tic-tac-toe view class.
+   * @param title the title of the JFrame
    */
   public SwingTicTacToeView(String title) {
     super(title);
 
+    // sets up the frame
     setMinimumSize(new Dimension(500, 500));
     setSize(new Dimension(500, 900));
     getContentPane().setBackground(new Color(180, 190, 254));
     setLayout(new BorderLayout());
 
+    // setting up the panel
     panel = new Panel(this);
     panel.setPreferredSize(new Dimension(500, 500));
 
+    // setting up the labels
     label = new JLabel("", SwingConstants.CENTER);
     label.setFont(new Font("Serif", Font.PLAIN, 50));
+
+    JLabel newLabel = new JLabel("Press esc at any time to reset");
 
     Dimension screenSize = this.getContentPane().getSize();
     setSize(screenSize);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    JLabel newLabel = new JLabel("Press esc at any time to reset");
     this.add(label,  BorderLayout.PAGE_START);
     this.add(panel, BorderLayout.CENTER);
     this.add(newLabel, BorderLayout.PAGE_END);
@@ -83,31 +88,26 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView, KeyList
     controller.getInput(coordinate);
   }
 
-  public void updateBoard(Player[][] board){
+  /**
+   * Function used to get a representation of the board from the controller.
+   * @param board 2d array representation of board.
+   */
+  public void updateBoard(Player[][] board) {
     this.board = board;
     this.panel.repaint();
   }
-  public Player[][] getBoard(){
+
+  /**
+   * Used to send over the representation of the board to the panel.
+   * @return 2d array representation of board.
+   */
+  public Player[][] getBoard() {
     return this.board;
 
   }
 
   /**
-   * draws the corresponding mark in the coordinate position.
-   * @param player current player
-   * @param row the row
-   * @param column the column
-   */
-  public void drawMark(Player player, int row, int column) {
-    //if (player == Player.X) {
-    //  this.panel.drawCross(row, column);
-    //} else {
-    //  this.panel.drawCircle(row, column);
-    //}
-  }
-
-  /**
-   * Displays message for IllegalArugmentExceptions.
+   * Displays message for IllegalArgumentExceptions.
    * @param e Illegal argument error
    */
   @Override
@@ -143,14 +143,10 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView, KeyList
     label.setText("TIE GAME!");
   }
 
-  @Override
-  public void keyTyped(KeyEvent e) {
-
-  }
 
   @Override
   public void keyPressed(KeyEvent e) {
-    if (e.getExtendedKeyCode() == 27){
+    if (e.getExtendedKeyCode() == 27) {
       this.controller.reset();
       this.panel.repaint();
 
@@ -160,6 +156,11 @@ public class SwingTicTacToeView extends JFrame implements TicTacToeView, KeyList
 
   @Override
   public void keyReleased(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyTyped(KeyEvent e) {
 
   }
 }

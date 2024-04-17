@@ -3,7 +3,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.StringReader;
 import java.util.Arrays;
 import org.junit.Test;
-import tictactoe.FailingAppendable;
+
 import tictactoe.Player;
 import tictactoe.TicTacToe;
 import tictactoe.TicTacToeConsoleController;
