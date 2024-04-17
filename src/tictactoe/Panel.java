@@ -73,8 +73,11 @@ public class Panel extends JPanel implements MouseListener {
       }
 
     }
+    // tells the layout manager to recalculate the layout
     view.revalidate();
+    // tells swing that an area of the window is dirty and needs to be repainted
     view.repaint();
+
   }
 
 

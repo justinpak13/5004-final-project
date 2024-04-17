@@ -120,8 +120,10 @@ public class SwingTicTacToeController implements TicTacToeController {
           view.requestTurn(model.getTurn());
 
         }
+        // already occupied
       } catch (IllegalArgumentException e) {
         view.displayError(e);
+        // game is over
       } catch (IllegalStateException e) {
         view.displayError(e);
       }

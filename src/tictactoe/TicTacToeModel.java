@@ -33,7 +33,6 @@ public class TicTacToeModel implements TicTacToe {
    * @throws IllegalArgumentException if the space is occupied or the position is otherwise invalid
    * @throws IllegalStateException if the game is over
    */
-  //TODO NEED TO IMPLEMENT
   public void move(int r, int c) throws IllegalArgumentException, IllegalStateException {
     if (r > 2 || r < 0 || c > 2 || c < 0) {
       throw new IllegalArgumentException("Out of bounds");
