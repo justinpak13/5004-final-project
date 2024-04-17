@@ -1,6 +1,9 @@
 package tictactoe;
 
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
@@ -45,18 +48,19 @@ public class Panel extends JPanel implements MouseListener {
 
     // drawing each mark based on board
     Player[][] board = view.getBoard();
-    for (int i = 0; i < 3; i++){
-      for (int j = 0; j < 3; j++){
-        if (board[i][j] == Player.O){
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (board[i][j] == Player.O) {
           int xcoord = (int) ((j) * this.getWidth() * 0.33) + (int) (this.getWidth() * 0.06);
           int ycoord = (int) ((i) * this.getHeight() * 0.33) + (int) (this.getHeight() * 0.06);
           Color c = new Color(255, 10, 10);
           g2d.setColor(c);
           g2d.setStroke(new BasicStroke(8));
-          g2d.drawOval(xcoord, ycoord , (int) (this.getWidth() * 0.20), (int) (this.getHeight() * 0.20));
+          g2d.drawOval(xcoord, ycoord, (int) (this.getWidth() * 0.20),
+                  (int) (this.getHeight() * 0.20));
         }
 
-        if (board[i][j] == Player.X){
+        if (board[i][j] == Player.X) {
           int xcoord = (int) ((j) * this.getWidth() * 0.33) + (int) (this.getWidth() * 0.17);
           int ycoord = (int) ((i) * this.getHeight() * 0.33) + (int) (this.getHeight() * 0.15);
           Color c = new Color(10, 10, 255);
